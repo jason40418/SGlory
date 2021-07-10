@@ -1,0 +1,40 @@
+{
+    "version": "1.0.2",
+    "date": "2018-04-14",
+    "editor": "傑森哥",
+    "domain": "sglory.cf",
+    "content": [
+        {
+            "url": "/",
+            "name": "首頁"
+        },
+        {
+            "url": "#",
+            "name": "關於我們（建設中）"
+        },
+        {
+            "url": "//sglory.cf/member",
+            "name": "團隊隊員"
+        },
+        {
+            "url": "#",
+            "name": "最新消息（建設中）"
+        },
+        {
+            "url": "//sglory.cf/contest/list",
+            "name": "比賽列表"
+        },
+        {
+            "url": "#",
+            "name": "戰術分享（建設中）"
+        },
+        {
+            "url": "//sglory.cf/replayshare/list",
+            "name": "RP分享"
+        },
+        {
+            "url": "#",
+            "name": "資源分享（建設中）"
+        }
+    ]
+}

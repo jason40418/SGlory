@@ -1,0 +1,290 @@
+<!DOCTYPE HTML>
+<!--
+	Urban by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+
+<head>
+    <title>Replay分享</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="shortcut icon" href="../images/favicon.ico" />
+    <link rel="bookmark" href="../images/favicon.ico" />
+
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <script type="text/javascript" language="javascript" src="../assets/js/css-management.js"></script>
+    <link rel="stylesheet" href="../assets/css/loader.css" />
+
+
+    <link rel="manifest" href="../assets/json/manifest.json" />
+    <script type="text/javascript" language="javascript" src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script type="text/javascript" language="javascript" src="../assets/js/notify.js" charset="UTF-8"></script>
+</head>
+
+<body class="subpage">
+    <div id="fakeLoader"></div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">
+            <a href="/">SGlory</a>
+        </div>
+        <a href="#menu">選單</a>
+    </header>
+
+    <!-- Nav -->
+    <nav id="menu">
+        <ul class="links">
+            <div id="menu_content"></div>
+        </ul>
+    </nav>
+
+    <!-- Main -->
+    <div id="main">
+        <style>
+            @import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+            @import url('https://fonts.googleapis.com/css?family=Roboto');
+            #table {
+                font-family: 'Roboto', 'Noto Sans TC', sans-serif;
+                padding-top: 15px;
+            }
+
+            #table > tbody {
+                color: #000;
+                font-weight: 700;
+            }
+            
+            section {
+                min-height: 90vh;
+            }
+
+            .btn {
+                -webkit-border-radius: 15;
+                -moz-border-radius: 15;
+                border-radius: 15px;
+                font-family: Arial;
+                color: #ffffff;
+                font-size: 14px;
+                font-family: 'Roboto', 'Noto Sans TC', sans-serif;
+                margin-bottom: 10px;
+                margin-right: 10px;
+                text-decoration: none;
+            }
+
+            .btn:hover {
+                text-decoration: none;
+            }
+        </style>
+        <!-- Section -->
+        <section class="wrapper style1">
+            <div class="container-fluid">
+                <header class="align-center">
+                    <h1>Replay 詳細內容</h1>
+                    <p>Cras sagittis turpis sit amet est tempus, sit amet consectetur purus tincidunt.</p>
+                </header>
+
+                <!-- 社群分享 -->
+                <div id="socialshare">
+                    <a href="#" id="facebook_share" data-title="123" data-description="123" data-social="facebook">Share this to Facebook</a>
+                </div>
+
+                <div class="table-wrapper">
+                    <table class="alt" id="table">
+                        <thead>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>編號</td>
+                                <td><span id="ID">{ID}</td>
+                                <td>標題</td>
+                                <td><span id="title">{title}</td>
+                            </tr>
+                            <tr>
+                                <td>適用組合</td>
+                                <td><span id="race">{race}</td>
+                                <td>遊戲版本</td>
+                                <td><span id="version">{version}</td>
+                            </tr>
+                            <tr>
+                                <td>上傳者</td>
+                                <td><span id="sharer">{sharer}</td>
+                                <td>更新日期</td>
+                                <td><span id="datetime">{datetime}</td>
+                            </tr>
+                            <tr>
+                                <td>下載密碼</td>
+                                <td colspan="3"><div id="download_form"></div></td>
+                            </tr>
+                            <tr>
+                                <td>下載連結</td>
+                                <td colspan="3"><div id="downloadlink"></div></td>
+                            </tr>
+                            <tr>
+                                <td colspan="4"><span id="memo">{memo}</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="report">
+            <p>
+                <a href="mailto:admin@sglory.cf">
+                    <i class="fa fa-paper-plane-o" aria-hidden="true"></i>網站管理員：傑森哥（admin@sglory.cf）</a>
+            </p>
+        </div>
+        <div class="copyright">
+            <!-- <ul class="icons">
+					<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon fa-snapchat"><span class="label">Snapchat</span></a></li>
+				</ul> -->
+            <p>
+                <div id="copyright_content"></div>
+            </p>
+        </div>
+    </footer>
+
+    <div id="backTop" class="to-top-btn">
+        <i class="fa fa-2x fa-chevron-up" aria-hidden="true"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script type="text/javascript" language="javascript" src="../assets/js/jquery.min.js"></script>
+    <script type="text/javascript" language="javascript" src="../assets/js/jquery.scrolly.min.js"></script>
+    <script type="text/javascript" language="javascript" src="../assets/js/jquery.scrollex.min.js"></script>
+    <script type="text/javascript" language="javascript" src="../assets/js/loader.js"></script>
+    <script type="text/javascript" language="javascript" src="../assets/js/skel.min.js"></script>
+    <script type="text/javascript" language="javascript" src="../assets/js/util.js"></script>
+    <script type="text/javascript" language="javascript" src="../assets/js/main.js"></script>
+    <script type="text/javascript" language="javascript" src="../assets/js/js-management.js"></script>
+    
+    <script>
+        function download(id, name, extension) {
+            var width = 500;
+            var height = 500;
+            var config = "";
+
+            config += "width=" + width + ", height=" + height+ ",";
+            config += "menubar=no, toolbar=no, location=no, directories=no, status=yes, scrollbars=yes , resizable=yes";
+      
+            var dl = window.open("", "dl", config);
+            //將視窗移到正中央的位置
+            dl.moveTo(screen.width/2-(width/2), screen.height/2-(height/2));
+
+            if (dl) {
+                var fileID = document.createElement("input");
+                fileID.type = "text";
+                fileID.name = "fileID";
+                fileID.value = id;
+                document.getElementById("form").appendChild(fileID);
+
+                var fileName = document.createElement("input");
+                fileName.type = "text";
+                fileName.name = "fileName";
+                fileName.value = name;
+                document.getElementById("form").appendChild(fileName);
+
+                var fileExtension = document.createElement("input");
+                fileExtension.type = "text";
+                fileExtension.name = "fileExtension";
+                fileExtension.value = extension;
+                document.getElementById("form").appendChild(fileExtension);
+
+                form.submit();
+                fileID.remove();
+                fileName.remove();
+                fileExtension.remove();
+
+                //setTimeout(function(){ dl.close();}, 3000);
+            }
+            else {
+                alert('You must allow popups for this download to work.');
+            }
+        }
+
+        function generatedPWD(state) {
+            var object = document.createElement("form");
+            object.id = "form";
+            object.target = "dl";
+            object.method = "POST";
+            object.action = "//sglory.cf/php/replayshare/download.php";
+
+            if(state == "1") {
+                var input = document.createElement("input");
+                input.type = "text";
+                input.name = "data";
+                input.placeholder = "請輸入授權碼以下載檔案";
+                object.appendChild(input);
+            }
+            else {
+                var span = document.createElement("span");
+                span.textContent = "此檔案設定為公開，無須任何下載授權碼";
+                object.appendChild(span);
+            }
+
+            document.getElementById("download_form").appendChild(object);
+        }
+
+        $("#fakeLoader").fakeLoader({
+            zIndex: 999,
+            timeToHide: 4500,
+            bgColor: "#34495e",
+            spinner: "spinner3"
+        });
+
+        //解析網址參數
+        var strUrl = location.search;
+        var getPara, ParaVal;
+        var aryPara = [];
+
+        if (strUrl.indexOf("?") != -1) {
+            var getSearch = strUrl.split("?");
+            getPara = getSearch[1].split("&");
+            
+            for (i = 0; i < getPara.length; i++) {
+                ParaVal = getPara[i].split("=");
+                aryPara.push(ParaVal[0]);
+                aryPara[ParaVal[0]] = ParaVal[1];
+            }
+        }
+
+        $.post("//sglory.cf/php/replayshare/view.php", {ID: aryPara["id"]}, function (data) {
+            //回填資訊
+            $("#ID").html(data["info"]["ID"]);
+            $("#title").html(data["info"]["title"]);
+            $("#race").html(data["info"]["combination"]);
+            $("#datetime").html(data["info"]["dateTime"]);
+            $("#sharer").html(data["info"]["sharer"]);
+            $("#version").html(data["info"]["gameVersion"]);
+            $("#memo").html(data["info"]["memo"]);
+            
+            var dom = "";
+
+            generatedPWD(data["info"]["privacy"]);
+            
+            $.each(data["link"], function(key, value) {          
+                var a = document.createElement("a");
+                a.href = "javascript: download('" + value["docID"] + "', '" + value["title"] + "' ,'" + value["fileNameExtension"] +"')";
+                a.innerHTML = value["title"];
+
+                document.getElementById("downloadlink").appendChild(a);
+            });
+
+            document.title = data["info"]["title"] + " | Replay 分享";
+        }, "json");
+
+    </script>
+
+</body>
+
+</html>

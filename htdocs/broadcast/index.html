@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <title>SGlory Broadcast</title>
+
+    <link rel="stylesheet" href="../../assets/css/flexboxgrid.min.css">
+    <link rel="stylesheet" href="../../assets/css/starcraft2-font.css">
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+        #bgmusic {
+            display: none;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="particles-js">
+        <div class="btext">
+            <div class="datetime">
+                <h2>
+                    <div id="time" class="datetime_text">
+                        <p>
+                            <span id="match_data"></span>
+                            <span id="match_message"></span>
+                            <span id="timer"></span>
+                        </p>
+                    </div>
+                </h2>
+            </div>
+
+            <div class="match-info">
+                <div id="team_panel"></div>
+
+                <div id="match_panel"></div>
+
+                <div id="banMap_panel"></div>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <div class="commentary">
+                <i class="fa fa-microphone" aria-hidden="true">：</i><span id="caster">{caster}</span>
+                <br/><i class="fa fa-eye" aria-hidden="true">：</i><span id="observer">{observer}</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="//cdn.jsdelivr.net/particles.js/2.0.0/particles.min.js"></script>
+    <script src="//code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="../../assets/js/jquery.countdown.js"></script>
+
+    <script>
+        particlesJS.load('particles-js', 'particles.json',
+            function () {
+                console.log('particles.json loaded...')
+            })
+    </script>
+
+    <script>
+        var time = 0;
+        var count = 0;
+        var max = 4;
+
+        function setTimer(time) {
+            $("#timer").countdown(time, function (event) {
+                $(this).text(
+                    event.strftime('%H:%M:%S')
+                );
+            });
+        }
+
+        function staffInfo() {
+            $.post("//sglory.cf/php/contest/2018inTeam/getSetting.php", function (json) {
+                $.each(json, function(key, value) {
+                    $("#" + value["key"]).html(value["value"]);
+                });
+            }, "json");
+        }
+
+        function teamPanel(json, score) {
+            var data = json;
+            var insertWord = "";
+
+            var teamData = {
+                dragon: "飛龍在天",
+                victory: "勝利bang不見",
+                profession: "內行人復興",
+                family: "你家就是我家"
+            }
+            var redTeam = json["redTeam"];
+            var blueTeam = json["blueTeam"];
+
+            insertWord += "<div class='row middle-xs center-xs team'>";
+            insertWord += "<div class='col-xs-1'>";
+            insertWord += "<div class='red'></div>";
+            insertWord += "</div>";
+            insertWord += "<div class='col-xs-4'>";
+            insertWord += "<div class='team_name'>" + teamData[redTeam] + "</div>";
+            insertWord += "</div>";
+            insertWord += "<div class='col-xs-2'>";
+            insertWord += "<div class='score' id='score'>" + score["red"] + " : " + score["blue"] + "</div>";
+            insertWord += "</div>";
+            insertWord += "<div class='col-xs-4'>";
+            insertWord += "<div class='team_name'>" + teamData[blueTeam] + "</div>";
+            insertWord += "</div>";
+            insertWord += "<div class='col-xs-1'>";
+            insertWord += "<div class='blue'></div>";
+            insertWord += "</div>";
+            insertWord += "</div>";
+
+            document.getElementById("team_panel").innerHTML = insertWord;
+        }
+
+        function matchPanel(json) {
+            var insertWord = "";
+
+            $.each(json, function (index, value) {
+                var no = value["gameNo"];
+                var type = no.split("_");
+
+                if (type[0] == "GP") {
+                    var race = { T: "terran", P: "protoss", Z: "zerg", R: "random" };
+                    var blueRace = value["blueRace"];
+                    var redRace = value["redRace"];
+
+                    insertWord += "<div class='row middle-xs center-xs game' id='game_" + count + "'>";
+                    insertWord += "<div class='col-xs-1'>";
+                    insertWord += "<div class='race'><i class='sc2 sc2-" + race[redRace] + "' id='red_race_" + count + "'></i></div>";
+                    insertWord += "</div>";
+                    insertWord += "<div class='col-xs-4'>";
+                    insertWord += "<div class='name'id='red_plaer_" + count + "'>" + value["redTeam"] + "</div>";
+                    insertWord += "</div>";
+                    insertWord += "<div class='col-xs-2'>";
+
+                    var result = value["result"];
+
+                    if (result.trim()) {
+                        var score = result.split("_");
+                        var redScore = parseInt(score[0]);
+                        var blueScore = parseInt(score[1]);
+                        insertWord += "<div class='verus' id='no_" + count + "'>" + redScore + " [G" + type[1] + "] " + blueScore + "</div>";
+                    }
+                    else
+                        insertWord += "<div class='verus' id='no_" + count + "'>0 [G" + type[1] + "] 0</div>";
+
+                    insertWord += "</div>";
+                    insertWord += "<div class='col-xs-4'>";
+                    insertWord += "<div class='name' id='blue_plaer_" + count + "'>" + value["blueTeam"] + "</div>";
+                    insertWord += "</div>";
+                    insertWord += "<div class='col-xs-1'>";
+                    insertWord += "<div class='race'><i class='sc2 sc2-" + race[blueRace] + "' id='blue_race_" + count + "'></i></div>";
+                    insertWord += "</div>";
+                    insertWord += "<div class='map' id='map_" + count + "'>" + value["map"] + "</div>";
+                    insertWord += "</div>";
+                }
+            });
+
+            document.getElementById("match_panel").innerHTML = insertWord;
+        }
+
+        function score(json) {
+            var data = json;
+            var data_length = Object.keys(data).length;
+            var redScore = 0;
+            var blueScore = 0;
+
+            $.each(data, function (index, value) {
+                var no = value["gameNo"];
+                var type = no.split("_");
+
+                if (type[0] == "GP") {
+                    var result = value["result"];
+
+                    if (result.trim()) {
+                        var rawResult = value["result"];
+                        var score = rawResult.split("_");
+
+                        redScore += parseInt(score[0]);
+                        blueScore += parseInt(score[1]);
+                    }
+                    else {
+                        //
+                    }
+                }
+            });
+
+            return { red: redScore, blue: blueScore };
+        }
+
+        function banPanel(json) {
+            var insertWord = "";
+            var redBanMap = "";
+            var blueBanMap = "";
+
+            $.each(json, function (index, value) {
+                var no = value["gameNo"];
+                var type = no.split("_");
+
+                if (type[0] == "BR") {
+                    redBanMap += value["map"] + " ";
+                }
+                else if (type[0] == "BB") {
+                    blueBanMap += value["map"] + " ";
+                }
+            });
+
+            insertWord += "<div class='row middle-xs center-xs game'><div class='col-xs-5'>";
+            insertWord += "<div class='ban-map'>" + redBanMap + "</div></div>";
+            insertWord += "<div class='col-xs-2'><div class='verus'>BAN</div></div>";
+            insertWord += "<div class='col-xs-5'><div class='ban-map'>" + blueBanMap + "</div></div></div>";
+
+            document.getElementById("banMap_panel").innerHTML = insertWord;
+        }
+
+        function refresh() {
+            $.post("//sglory.cf/php/contest/matchData.php", function (json) {
+                setTimer(json["cup_data"]["dateTime"]);
+                document.getElementById("match_data").innerHTML = json["cup_data"]["dateTime"];
+
+                var currScore = score(json["game_data"]);
+
+                teamPanel(json["cup_data"], currScore);
+                matchPanel(json["game_data"]);
+                banPanel(json["game_data"]);
+                
+                staffInfo();
+
+            }, "json");
+
+        }
+
+        refresh();
+        setInterval(refresh, 5000);
+    </script>
+</body>
+
+</html>

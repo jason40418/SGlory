@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+    <link rel="stylesheet" href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/stick.footer.css">
+
+    <title>Broadcast 後臺管理</title>
+
+    <style>
+        @import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+        @import url('https://fonts.googleapis.com/css?family=Fjalla+One');
+
+        body {
+            font-family: 'Fjalla One', 'Noto Sans TC', sans-serif;
+        }
+
+        .battle-title {
+            font-size: 3.0em;
+        }
+
+        .game {
+            font-size: 1.5em;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <!-- Fixed navbar -->
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="#">Broadcast</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+                aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="inTeam.html">前台顯示管理</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="newMatch.html">新增賽事</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Begin page content -->
+    <main role="main" class="container">
+        <div class="container-flud">
+            <button type="button" class="btn btn-success btn-lg" id="save" onclick="update_data();">更新比分</button>
+            <button type="button" class="btn btn-danger btn-lg" id="final" onclick="finish();">結束比賽</button>
+
+            <div class="container-fluid text-center battle-title">
+                <span id="redTeam">{redteam}</span>
+                <span id="verus"> 〈VS.〉 </span>
+                <span id="blueTeam">{blueteam}</span>
+            </div>
+
+            <!-- 選手面板 -->
+            <div class="card">
+                <div class="container row">
+                    <div class="col text-center">
+                        <span class="game">第 1 場 ◇ Game 1</span>
+                    </div>
+                </div>
+                <div class="container row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>紅方隊伍</label>
+                            <select name="red" id="red_1" class="form-control"></select>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <label>種族</label>
+                        <select name="red_race" id="red_race_1" class="form-control">
+                            <option value="">請選擇種族</option>
+                            <option value="P">神族 Protoss</option>
+                            <option value="T">人類 Terran</option>
+                            <option value="Z">蟲族 Zerg</option>
+                            <option value="R">隨機 Random</option>
+                        </select>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <label>藍方隊伍</label>
+                            <select name="blue" id="blue_1" class="form-control"></select>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <label>種族</label>
+                        <select name="blue_race" id="blue_race_1" class="form-control">
+                            <option value="">請選擇種族</option>
+                            <option value="P">神族 Protoss</option>
+                            <option value="T">人類 Terran</option>
+                            <option value="Z">蟲族 Zerg</option>
+                            <option value="R">隨機 Random</option>
+                        </select>
+                    </div>
+
+                    <div class="col">
+                        <label>地圖</label>
+                        <select name="map" id="map_1" class="form-control"></select>
+                    </div>
+
+                    <div class="col">
+                        <label>結果</label>
+                        <select name="result" id="result_1" class="form-control">
+                            <option value="" selected>0:0</option>
+                            <option value="1_0">1:0</option>
+                            <option value="0_1">0:1</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- 選手面板 -->
+
+            <!-- 選手面板 -->
+            <div class="card">
+                <div class="container row">
+                    <div class="col text-center">
+                        <span class="game">第 2 場 ◇ Game 2</span>
+                    </div>
+                </div>
+                <div class="container row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>紅方隊伍</label>
+                            <select name="red" id="red_2" class="form-control"></select>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <label>種族</label>
+                        <select name="red_race" id="red_race_2" class="form-control">
+                            <option value="">請選擇種族</option>
+                            <option value="P">神族 Protoss</option>
+                            <option value="T">人類 Terran</option>
+                            <option value="Z">蟲族 Zerg</option>
+                            <option value="R">隨機 Random</option>
+                        </select>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <label>藍方隊伍</label>
+                            <select name="blue" id="blue_2" class="form-control"></select>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <label>種族</label>
+                        <select name="blue_race" id="blue_race_2" class="form-control">
+                            <option value="">請選擇種族</option>
+                            <option value="P">神族 Protoss</option>
+                            <option value="T">人類 Terran</option>
+                            <option value="Z">蟲族 Zerg</option>
+                            <option value="R">隨機 Random</option>
+                        </select>
+                    </div>
+
+                    <div class="col">
+                        <label>地圖</label>
+                        <select name="map" id="map_2" class="form-control"></select>
+                    </div>
+
+                    <div class="col">
+                        <label>結果</label>
+                        <select name="result" id="result_2" class="form-control">
+                            <option value="" selected>0:0</option>
+                            <option value="1_0">1:0</option>
+                            <option value="0_1">0:1</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- 選手面板 -->
+
+            <!-- 選手面板 -->
+            <div class="card">
+                <div class="container row">
+                    <div class="col text-center">
+                        <span class="game">第 3 場 ◇ Game 3</span>
+                    </div>
+                </div>
+                <div class="container row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>紅方隊伍</label>
+                            <select name="red" id="red_3" class="form-control"></select>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <label>種族</label>
+                        <select name="red_race" id="red_race_3" class="form-control">
+                            <option value="">請選擇種族</option>
+                            <option value="P">神族 Protoss</option>
+                            <option value="T">人類 Terran</option>
+                            <option value="Z">蟲族 Zerg</option>
+                            <option value="R">隨機 Random</option>
+                        </select>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <label>藍方隊伍</label>
+                            <select name="blue" id="blue_3" class="form-control"></select>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <label>種族</label>
+                        <select name="blue_race" id="blue_race_3" class="form-control">
+                            <option value="">請選擇種族</option>
+                            <option value="P">神族 Protoss</option>
+                            <option value="T">人類 Terran</option>
+                            <option value="Z">蟲族 Zerg</option>
+                            <option value="R">隨機 Random</option>
+                        </select>
+                    </div>
+
+                    <div class="col">
+                        <label>地圖</label>
+                        <select name="map" id="map_3" class="form-control"></select>
+                    </div>
+
+                    <div class="col">
+                        <label>結果</label>
+                        <select name="result" id="result_3" class="form-control">
+                            <option value="" selected>0:0</option>
+                            <option value="1_0">1:0</option>
+                            <option value="0_1">0:1</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- 選手面板 -->
+
+            <!-- 選手面板 -->
+            <div class="card">
+                <div class="container row">
+                    <div class="col text-center">
+                        <span class="game">第 4 場 ◇ Game 4</span>
+                    </div>
+                </div>
+                <div class="container row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>紅方隊伍</label>
+                            <select name="red" id="red_4" class="form-control "></select>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <label>種族</label>
+                        <select name="red_race" id="red_race_4" class="form-control">
+                            <option value="">請選擇種族</option>
+                            <option value="P">神族 Protoss</option>
+                            <option value="T">人類 Terran</option>
+                            <option value="Z">蟲族 Zerg</option>
+                            <option value="R">隨機 Random</option>
+                        </select>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <label>藍方隊伍</label>
+                            <select name="blue" id="blue_4" class="form-control"></select>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <label>種族</label>
+                        <select name="blue_race" id="blue_race_4" class="form-control">
+                            <option value="">請選擇種族</option>
+                            <option value="P">神族 Protoss</option>
+                            <option value="T">人類 Terran</option>
+                            <option value="Z">蟲族 Zerg</option>
+                            <option value="R">隨機 Random</option>
+                        </select>
+                    </div>
+
+                    <div class="col">
+                        <label>地圖</label>
+                        <select name="map" id="map_4" class="form-control"></select>
+                    </div>
+
+                    <div class="col">
+                        <label>結果</label>
+                        <select name="result" id="result_4" class="form-control">
+                            <option value="" selected>0:0</option>
+                            <option value="1_0">1:0</option>
+                            <option value="0_1">0:1</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- 選手面板 -->
+
+            <!-- 選手面板 -->
+            <div class="card">
+                <div class="container row">
+                    <div class="col text-center">
+                        <span class="game">第 5 場 ◇ Game 5</span>
+                    </div>
+                </div>
+                <div class="container row">
+                    <div class="col">
+                        <div class="form-group">
+                            <label>紅方隊伍</label>
+                            <select name="red" id="red_5" class="form-control "></select>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <label>種族</label>
+                        <select name="red_race" id="red_race_5" class="form-control">
+                            <option value="">請選擇種族</option>
+                            <option value="P">神族 Protoss</option>
+                            <option value="T">人類 Terran</option>
+                            <option value="Z">蟲族 Zerg</option>
+                            <option value="R">隨機 Random</option>
+                        </select>
+                    </div>
+
+                    <div class="col">
+                        <div class="form-group">
+                            <label>藍方隊伍</label>
+                            <select name="blue" id="blue_5" class="form-control"></select>
+                        </div>
+                    </div>
+
+                    <div class="col">
+                        <label>種族</label>
+                        <select name="blue_race" id="blue_race_5" class="form-control">
+                            <option value="">請選擇種族</option>
+                            <option value="P">神族 Protoss</option>
+                            <option value="T">人類 Terran</option>
+                            <option value="Z">蟲族 Zerg</option>
+                            <option value="R">隨機 Random</option>
+                        </select>
+                    </div>
+
+                    <div class="col">
+                        <label>地圖</label>
+                        <select name="map" id="map_5" class="form-control"></select>
+                    </div>
+
+                    <div class="col">
+                        <label>結果</label>
+                        <select name="result" id="result_5" class="form-control">
+                            <option value="" selected>0:0</option>
+                            <option value="1_0">1:0</option>
+                            <option value="0_1">0:1</option>
+                        </select>
+                    </div>
+                </div>
+            </div>
+            <!-- 選手面板 -->
+
+        </div>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <span class="text-muted">&copy; 2018 Supreme Glory Clan All Right Reserved. Editor:傑森哥</span>
+        </div>
+    </footer>
+    <script src="//code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="//cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+
+    <script lang="text/javascript">
+        var teamData = {
+            dragon: "飛龍在天",
+            victory: "勝利bang不見",
+            profession: "內行人復興",
+            family: "你家就是我家"
+        }
+
+        var red_player_list = new Object;
+        var blue_player_list = new Object;
+
+        function getMapData(ID, seasonID) {
+            var result = new Array();
+            $.ajax({
+                type: "POST",
+                url: "//sglory.cf/php/contest/getMap.php",
+                data: { ID: ID, seasonID:  seasonID},
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    result = data;
+                }
+            });
+
+            return result;
+        }
+
+        function getPlayerData(ID, teamID) {
+            var result = new Array();
+            $.ajax({
+                type: "POST",
+                url: "//sglory.cf/php/contest/getPlayer.php",
+                data: { ID: ID, teamID: teamID },
+                dataType: "json",
+                async: false,
+                success: function (data) {
+                    result = data;
+                }
+            });
+
+            return result;
+        }
+
+        function setMapSelect(data) {
+            var optionsAsString = "";
+            optionsAsString += "<option value=''>" + "TBD" + "</option>";
+
+            $.each(data, function (key, value) {
+                optionsAsString += "<option value='" + value["TC"] + "'>" + value["TC"] + "</option>";
+            });
+
+            $("select[name='map']").each(function () {
+                $(this).append(optionsAsString);
+            });
+        }
+
+        function setPlayerSelect(data, name) {
+            var optionsAsString = "";
+            optionsAsString += "<option value=''>" + "TBD" + "</option>";
+
+            $.each(data, function (key, value) {
+                optionsAsString += "<option value='" + value["name"] + "'>" + value["name"] + "(" + value["race"] + ")</option>";
+                if(name == "red")           red_player_list[value["name"]] = value["race"];
+                else if(name == "blue")     blue_player_list[value["name"]] = value["race"];
+            });
+
+            
+
+            $("select[name='" + name + "']").each(function () {
+                $(this).append(optionsAsString);
+            });
+        }
+
+        function setMatchData(data) {
+            var result = new Object();
+            console.log(data);
+
+            $.each(data, function (key, value) {
+                var type = String(value["gameNo"]).split("_");
+                if (type[0] == "GP") {
+                    result[type[1]] = {
+                        blueTeam: value["blueTeam"],
+                        blueTeamRace: value["blueRace"],
+                        redTeam: value["redTeam"],
+                        redTeamRace: value["redRace"],
+                        map: value["map"],
+                        result: value["result"]
+                    }
+                }
+            });
+
+            for (var i = 1; i <= 5; i++) {
+
+                if (i in result) {
+                    //設定紅方隊伍名單
+                    $("#red_" + i).val(result[i]["redTeam"]);
+                    $("#red_race_" + i).val(result[i]["redTeamRace"]);
+                    //設定藍方隊伍名單
+                    $("#blue_" + i).val(result[i]["blueTeam"]);
+                    $("#blue_race_" + i).val(result[i]["blueTeamRace"]);
+                    //設定地圖
+                    $("#map_" + i).children().each(function () {
+                        if ($(this).text() == result[i]["map"]) {
+                            //jQuery給法
+                            $(this).attr("selected", "true"); //或是給"selected"也可
+
+                            //javascript給法
+                            this.selected = true;
+                        }
+                    });
+                    //設定比分
+                    $("#result_" + i).val(result[i]["result"]);
+                }
+            }
+        }
+
+        function init() {
+            $.post("//sglory.cf/php/contest/matchData.php", function (json) {
+                if(json["cup_data"] != undefined) {
+                    var ID = json["cup_data"]["ID"];
+                    var cupID = json["cup_data"]["cupID"];
+
+                    window.sessionStorage.setItem("_ID", ID);
+                    window.sessionStorage.setItem("_cupID", cupID);
+
+                    //設定地圖選單
+                    var map = getMapData(ID, "2018S02");
+                    setMapSelect(map);
+
+                    //設定紅藍隊伍選手名單選單
+                    var red_team = getPlayerData(json["cup_data"]["cupID"], json["cup_data"]["redTeam"]);
+                    setPlayerSelect(red_team, "red");
+                    var blue_team = getPlayerData(json["cup_data"]["cupID"], json["cup_data"]["blueTeam"]);
+                    setPlayerSelect(blue_team, "blue");
+
+                    //設定比賽隊伍標題
+                    $("#redTeam").html(teamData[json["cup_data"]["redTeam"]]);
+                    $("#blueTeam").html(teamData[json["cup_data"]["blueTeam"]]);
+
+                    //回填賽事資訊
+                    setMatchData(json["game_data"]);
+                }
+                else {
+                    $("#redTeam").html("{redteam}");
+                    $("#blueTeam").html("{blueteam}");
+                    alert("目前無任何預計進行比賽！");
+                }   
+            }, "json");
+        }
+
+        function finish() {
+            var ID = window.sessionStorage.getItem("_ID");
+            var cupID = window.sessionStorage.getItem("_cupID");
+            
+            update_data();
+            $.post("//sglory.cf/php/contest/gameSet.php", { ID: ID, cupID: cupID }, function () { 
+                $("select[name='red'] > option").each(function () {  $(this).remove();});
+                $("select[name='blue'] > option").each(function () { $(this).remove();});
+                $("select[name='map'] > option").each(function () {  $(this).remove();});
+
+                init();
+            });
+        }
+
+        function update_data() {
+            var ID = window.sessionStorage.getItem("_ID");
+            var cupID = window.sessionStorage.getItem("_cupID");
+            var red_player = new Array();
+            var red_player_race = new Array();
+            var blue_player = new Array();
+            var blue_player_race = new Array();
+            var map = new Array();
+            var result = new Array();
+
+            $("select[name='red']").each(function () { red_player.push($(this).val()); });
+            $("select[name='red_race']").each(function () { red_player_race.push($(this).val()); });
+            $("select[name='blue']").each(function () { blue_player.push($(this).val()); });
+            $("select[name='blue_race']").each(function () { blue_player_race.push($(this).val()); });
+            $("select[name='map']").each(function () { map.push($(this).val()); });
+            $("select[name='result']").each(function () { result.push($(this).val()); });
+
+            var data_count = red_player.length;
+            var data = new Object();
+
+            for (var i = 0; i < data_count; i++) {
+                data[i] = {
+                    red: red_player[i],
+                    redRace: red_player_race[i],
+                    blue: blue_player[i],
+                    blueRace: blue_player_race[i],
+                    map: map[i],
+                    result: result[i]
+                };
+            }
+
+            $.post("//sglory.cf/php/contest/update.php", { ID: ID, cupID: cupID, data: data });
+        }
+
+        $(document).on("change", "select[name='red']", function () {
+            var object = this.id;
+            var paramerter = object.split("_");
+            
+            if(paramerter[0] == "red")
+                $("#" + paramerter[0] + "_race_" + paramerter[1]).val(red_player_list[this.value]);
+            else if(paramerter[0] == "blue")
+                $("#" + paramerter[0] + "_race_" + paramerter[1]).val(blue_player_list[this.value]);
+        });
+
+        $(document).on("change", "select[name='blue']", function () {          
+            var object = this.id;
+            var paramerter = object.split("_");
+            
+            if(paramerter[0] == "red")
+                $("#" + paramerter[0] + "_race_" + paramerter[1]).val(red_player_list[this.value]);
+            else if(paramerter[0] == "blue")
+                $("#" + paramerter[0] + "_race_" + paramerter[1]).val(blue_player_list[this.value]);
+        });
+
+        $(document).ready(function () {
+            init();
+        });
+    </script>
+</body>
+
+</html>

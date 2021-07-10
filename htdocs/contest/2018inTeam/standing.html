@@ -1,0 +1,173 @@
+<!DOCTYPE HTML>
+<!--
+	Urban by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+
+<head>
+    <title>2018年第一屆SGlory隊內交流賽</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="shortcut icon" href="../../images/favicon.ico" />
+    <link rel="bookmark" href="../../images/favicon.ico" />
+
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <script type="text/javascript" language="javascript" src="../../assets/js/css-management.js"></script>
+
+
+    <link rel="manifest" href="../../assets/json/manifest.json" />
+    <script type="text/javascript" language="javascript" src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script type="text/javascript" language="javascript" src="../../assets/js/notify.js" charset="UTF-8"></script>
+</head>
+
+<body class="subpage">
+
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">
+            <a href="/">SGlory</a>
+        </div>
+        <a href="#menu">選單</a>
+    </header>
+
+    <!-- Nav -->
+    <nav id="menu">
+        <ul class="links">
+            <div id="menu_content"></div>
+        </ul>
+    </nav>
+
+    <!-- Main -->
+    <div id="main">
+        <style>
+            @import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+            @import url('https://fonts.googleapis.com/css?family=Roboto');
+            #table > tbody {
+                color: #000;
+                font-family: 'Roboto', 'Noto Sans TC', sans-serif;
+                font-weight: 700;
+            }
+        </style>
+        <!-- Section -->
+        <section class="wrapper style1">
+            <div class="inner">
+                <header class="align-center">
+                    <h1><i class="fa fa-tachometer" aria-hidden="true"></i>STANDING | 戰績排名</h1>
+                    <p>— 2018年第一屆SGlory隊內交流賽 —</p>
+                </header>
+
+                <div class="table-wrapper">
+                    <table class="alt" id="table">
+                        <thead>
+                            <tr>
+                                <th>隊名</th>
+                                <th>已賽</th>
+                                <th>總戰績</th>
+                                <th>勝率</th>
+                                <th>回合戰績</th>
+                                <th>+/-</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div id="loading">
+                    <div class="spinner">
+                        <div class="rect1"></div>
+                        <div class="rect2"></div>
+                        <div class="rect3"></div>
+                        <div class="rect4"></div>
+                        <div class="rect5"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="report">
+            <p>
+                <a href="mailto:admin@sglory.cf">
+                    <i class="fa fa-paper-plane-o" aria-hidden="true"></i>網站管理員：傑森哥（admin@sglory.cf）</a>
+            </p>
+        </div>
+        <div class="copyright">
+            <!-- <ul class="icons">
+					<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon fa-snapchat"><span class="label">Snapchat</span></a></li>
+				</ul> -->
+            <p>
+                <div id="copyright_content"></div>
+            </p>
+        </div>
+    </footer>
+
+    <div id="backTop" class="to-top-btn">
+        <i class="fa fa-2x fa-chevron-up" aria-hidden="true"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script type="text/javascript" language="javascript" src="../../assets/js/jquery.min.js"></script>
+    <script type="text/javascript" language="javascript" src="../../assets/js/jquery.scrolly.min.js"></script>
+    <script type="text/javascript" language="javascript" src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script type="text/javascript" language="javascript" src="../../assets/js/skel.min.js"></script>
+    <script type="text/javascript" language="javascript" src="../../assets/js/util.js"></script>
+    <script type="text/javascript" language="javascript" src="../../assets/js/main.js"></script>
+    <script type="text/javascript" language="javascript" src="../../assets/js/js-management.js"></script>
+
+    <script type="text/javascript">
+        $.post("//sglory.cf/php/contest/2018inTeam/standing.php", function(data) {
+            //依照勝敗排列
+            data = data.sort(function (a, b) {
+                        if(a.win == b.win)
+                            return a.disparity < b.disparity ? 1 : -1;
+                        else
+                            return a.win < b.win ? 1 : -1;
+                    });
+
+            var insertWord = "";
+            $.each(data, function(index, value) {
+                insertWord += "<tr>";
+                insertWord += "<td>" + value["teamName"] + "</td>";
+                insertWord += "<td>" + value["gamePlay"] + "</td>";
+                insertWord += "<td>" + value["win"] + " - " + value["lose"] + "</td>";
+                
+                var winrate = value["win"] / value["gamePlay"];
+
+                insertWord += "<td>" + winrate.toFixed(3) + "</td>";
+                insertWord += "<td>" + value["gameWin"] + " - " + value["gameLose"] + "</td>";
+
+                //判別是否需要補正號
+                if(value["disparity"] >= 0)
+                    insertWord += "<td>" + "+" + value["disparity"] + "</td>";
+                else
+                    insertWord += "<td>" + value["disparity"] + "</td>";
+                
+                insertWord += "</tr>";
+            });
+            
+            $("#table").find("tr:not(:first)").remove();
+            $("#table > tbody").append(insertWord);
+
+            $("#loading").hide();
+        }, "json");
+
+        window.onload = function () {
+            $('#table').basictable({
+                breakpoint: 768,
+            });
+        };
+    </script>
+
+</body>
+
+</html>

@@ -1,0 +1,19 @@
+<IfModule mod_rewrite.c>
+RewriteEngine On
+ErrorDocument 403 /ErrorPages/403.html
+ErrorDocument 404 /ErrorPages/404.html
+</IfModule>
+
+# DISABLE CACHING
+##<IfModule mod_headers.c>
+##	Header set Cache-Control "no-cache, no-store, must-revalidate"
+##	Header set Pragma "no-cache"
+##	Header set Expires 0
+##</IfModule>
+
+RewriteEngine On
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteRule ^([^\.]+)$ $1.html [NC,L]
+
+RewriteCond %{THE_REQUEST} \.html
+RewriteRule ^(.*)\.html$ /$1 [R=301,L]

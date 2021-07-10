@@ -1,0 +1,234 @@
+<!DOCTYPE HTML>
+<!--
+	Urban by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+
+<head>
+    <title>2018年第一屆SGlory隊內交流賽</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="shortcut icon" href="../../images/favicon.ico" />
+    <link rel="bookmark" href="../../images/favicon.ico" />
+
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <script type="text/javascript" language="javascript" src="../../assets/js/css-management.js"></script>
+
+
+    <link rel="manifest" href="../../assets/json/manifest.json" />
+    <script type="text/javascript" language="javascript" src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script type="text/javascript" language="javascript" src="../../assets/js/notify.js" charset="UTF-8"></script>
+</head>
+
+<body class="subpage">
+
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">
+            <a href="/">SGlory</a>
+        </div>
+        <a href="#menu">選單</a>
+    </header>
+
+    <!-- Nav -->
+    <nav id="menu">
+        <ul class="links">
+            <div id="menu_content"></div>
+        </ul>
+    </nav>
+
+    <!-- Main -->
+    <div id="main">
+        <style>
+            @import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+            @import url('https://fonts.googleapis.com/css?family=Roboto');
+            #tabs {
+                color: #000;
+                font-family: 'Roboto', 'Noto Sans TC', sans-serif;
+                font-weight: 700;
+            }
+
+            table tr {
+                cursor: pointer;
+            }
+
+            tbody tr:hover, tbody tr:nth-child(2n + 1):hover {
+                background-color: #DDD !important;
+            }
+        </style>
+        <!-- Section -->
+        <section class="wrapper style1">
+            <div class="inner">
+                <header class="align-center">
+                    <h1><i class="fa fa-users" aria-hidden="true"></i>TEAM |隊伍</h1>
+                    <p>— 2018年第一屆SGlory隊內交流賽 —</p>
+                </header>
+
+                <div id="tabs">
+                    <ul id="tabs_link"></ul>
+                    <div id="tabs_content"></div>
+                </div>
+                <div id="loading">
+                    <div class="spinner">
+                        <div class="rect1"></div>
+                        <div class="rect2"></div>
+                        <div class="rect3"></div>
+                        <div class="rect4"></div>
+                        <div class="rect5"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="report">
+            <p>
+                <a href="mailto:admin@sglory.cf">
+                    <i class="fa fa-paper-plane-o" aria-hidden="true"></i>網站管理員：傑森哥（admin@sglory.cf）</a>
+            </p>
+        </div>
+        <div class="copyright">
+            <!-- <ul class="icons">
+					<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon fa-snapchat"><span class="label">Snapchat</span></a></li>
+				</ul> -->
+            <p>
+                <div id="copyright_content"></div>
+            </p>
+        </div>
+    </footer>
+
+    <div id="backTop" class="to-top-btn">
+        <i class="fa fa-2x fa-chevron-up" aria-hidden="true"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script type="text/javascript" language="javascript" src="../../assets/js/jquery.min.js"></script>
+    <script type="text/javascript" language="javascript" src="../../assets/js/jquery.scrolly.min.js"></script>
+    <script type="text/javascript" language="javascript" src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script type="text/javascript" language="javascript" src="../../assets/js/skel.min.js"></script>
+    <script type="text/javascript" language="javascript" src="../../assets/js/util.js"></script>
+    <script type="text/javascript" language="javascript" src="../../assets/js/main.js"></script>
+    <script type="text/javascript" language="javascript" src="../../assets/js/js-management.js"></script>
+
+    <script>
+        var race_list = {
+            "P": "protoss",
+            "T": "terran",
+            "Z": "zerg",
+            "R": "random"
+        }
+        var member_data;
+
+        function teamGenerated(data) {
+            var ul_list = "<li><a href='#tabs-" + data["info"]["teamID"] + "'>" + data["info"]["teamName_TC"] + "</a></li>";
+            $("#tabs_link").append(ul_list);
+            
+            var content = "";
+            content += "<div id='tabs-" + data["info"]["teamID"] + "'>";
+            
+            content += "<div class='table-wrapper'><table class='alt' id='table_" + data["info"]["teamName_TC"] + "'><thead>";
+            content += "<tr>";
+            content += "<th>名稱</th>";
+            content += "<th>階級</th>";
+            content += "<th>MMR</th>";
+            content += "<th>種族</th>";
+            content += "<th>戰績</th>";
+            content += "<th>勝率</th>";
+            content += "<th>近況</th>";
+            content += "</tr></thead><tbody>";
+
+            /**印出隊伍隊員**/
+            var player = data["player"];
+            $.each(player, function (key, value) {
+                /** 取得即時天梯資料 */
+                var filter = {
+                    name: value["playerName"],
+                    race: race_list[value["race"]]
+                };
+
+                var users = member_data.filter(function(item) {
+                    for (var key in filter) {
+                        if (item[key] === undefined || item[key] != filter[key])
+                        return false;
+                    }
+                    return true;
+                });
+                
+                content += "<tr><td>" + value["playerName"] + "</td>";
+                
+                //判別是否有天梯資料
+                if( "0" in users ) {
+                    content += "<td><i class='sc2 sc2-" + users["0"]["league"] + "'></i>" + users["0"]["tier"] + "</td>";
+                    content += "<td>" + users["0"]["mmr"] + "</td>";
+                }
+                else {
+                    content += "<td></td>";
+                    content += "<td></td>";
+                }           
+                content += "<td><i class='sc2 sc2-" + race_list[value["race"]] + "'></i></td>";
+                content += "<td>" + value["result"]["Win"] + "-" + value["result"]["Lose"]  + "</td>";
+
+                /** 勝率計算 */
+                var gameplay = value["result"]["Win"] + value["result"]["Lose"];
+                var winrate = (gameplay != 0) ? value["result"]["Win"] / gameplay : 0;
+
+                content += "<td>" + winrate.toFixed(3) + "</td>";
+                content += "<td>" + value["result"]["state"] + value["result"]["staight"]  + "</td>";
+                content += "</tr>";
+            });
+
+            content += "</tbody></table></div>";
+
+            content += "</div>";
+            $("#tabs_content").append(content);
+        }
+         
+        function loadData() {
+            $.ajax({
+                type :"post",
+                url  : "//sglory.cf/php/sglory_member_ladder.php",
+                dataType: "json",
+                timeout: "10000",
+                async: false,
+                success : function(mb_data) {
+                    if(mb_data.length === 0) {
+                        loadData();
+                    }
+                    else {
+                        member_data = mb_data;
+                        console.log(member_data);
+                        $.post("//sglory.cf/php/contest/2018inTeam/getFullTeamPlayer.php", function (data) {
+                            //取得天梯資料
+                            $.each(data, function (key, value) {
+                                teamGenerated(value);
+                            });
+
+                            $("#tabs").tabs();
+
+                            $('table').basictable({
+                                breakpoint: 768,
+                            });
+
+                            $("#loading").hide();
+                        }, "json");
+                    }          
+                }
+            });
+        }
+
+        window.onload = function () {
+            setTimeout(loadData, 1500);
+        }
+    </script>
+</body>
+
+</html>

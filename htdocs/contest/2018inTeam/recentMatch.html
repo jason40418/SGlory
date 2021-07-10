@@ -1,0 +1,190 @@
+<!DOCTYPE HTML>
+<!--
+	Urban by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+
+<head>
+    <title>2018年第一屆SGlory隊內交流賽</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="shortcut icon" href="../../images/favicon.ico" />
+    <link rel="bookmark" href="../../images/favicon.ico" />
+
+    <link rel="stylesheet" href="../../assets/css/main.css" />
+    <script type="text/javascript" language="javascript" src="../../assets/js/css-management.js"></script>
+
+
+    <link rel="manifest" href="../../assets/json/manifest.json" />
+    <script type="text/javascript" language="javascript" src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script type="text/javascript" language="javascript" src="../../assets/js/notify.js" charset="UTF-8"></script>
+</head>
+
+<body class="subpage">
+
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">
+            <a href="/">SGlory</a>
+        </div>
+        <a href="#menu">選單</a>
+    </header>
+
+    <!-- Nav -->
+    <nav id="menu">
+        <ul class="links">
+            <div id="menu_content"></div>
+        </ul>
+    </nav>
+
+    <!-- Main -->
+    <div id="main">
+        <style>
+            @import url(//fonts.googleapis.com/earlyaccess/notosanstc.css);
+            @import url('https://fonts.googleapis.com/css?family=Roboto');
+            section {
+                min-height: 90vh;
+            }
+
+            #upcoming {
+                color: #000;
+                font-weight: 700;
+            }
+            
+            .matchNo {
+                padding: 7% 0;
+                background-color: #f2638e;
+                font-size: 1.5em;
+                text-align: center;
+                color: #FFF;
+            }
+
+            .title {
+                font-size: 2.0em;
+                text-align: center;
+            }
+
+            .game {
+                text-align: center;
+                margin-bottom: 1.0em;
+            }
+
+            .verus {
+                background-color: #d2d8e0;
+                color: rgb(28, 28, 29)
+            }
+        </style>
+        <!-- Section -->
+        <section class="wrapper style1">
+            <div class="inner">
+                <header class="align-center">
+                    <h1><i class="fa fa-tachometer" aria-hidden="true"></i>Upcoming | 近日比賽</h1>
+                    <p>— 2018年第一屆SGlory隊內交流賽 —</p>
+                </header>
+
+                <div id="upcoming"></div>
+
+                <div id="loading">
+                    <div class="spinner">
+                        <div class="rect1"></div>
+                        <div class="rect2"></div>
+                        <div class="rect3"></div>
+                        <div class="rect4"></div>
+                        <div class="rect5"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="report">
+            <p>
+                <a href="mailto:admin@sglory.cf">
+                    <i class="fa fa-paper-plane-o" aria-hidden="true"></i>網站管理員：傑森哥（admin@sglory.cf）</a>
+            </p>
+        </div>
+        <div class="copyright">
+            <!-- <ul class="icons">
+					<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon fa-snapchat"><span class="label">Snapchat</span></a></li>
+				</ul> -->
+            <p>
+                <div id="copyright_content"></div>
+            </p>
+        </div>
+    </footer>
+
+    <div id="backTop" class="to-top-btn">
+        <i class="fa fa-2x fa-chevron-up" aria-hidden="true"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script type="text/javascript" language="javascript" src="../../assets/js/jquery.min.js"></script>
+    <script type="text/javascript" language="javascript" src="../../assets/js/jquery.scrolly.min.js"></script>
+    <script type="text/javascript" language="javascript" src="../../assets/js/jquery.scrollex.min.js"></script>
+    <script type="text/javascript" language="javascript" src="../../assets/js/skel.min.js"></script>
+    <script type="text/javascript" language="javascript" src="../../assets/js/util.js"></script>
+    <script type="text/javascript" language="javascript" src="../../assets/js/main.js"></script>
+    <script type="text/javascript" language="javascript" src="../../assets/js/js-management.js"></script>
+
+    <script type="text/javascript">
+        var teamData = {
+            dragon: "飛龍在天",
+            victory: "勝利bang不見",
+            profession: "內行人復興",
+            family: "你家就是我家"
+        }
+        var race = {
+            P: "protoss",
+            T: "terran",
+            Z: "zerg",
+            R: "random"
+        }
+
+        $.post("//sglory.cf/php/contest/2018inTeam/getRecentMatch.php", function(data) {
+            console.log(data)
+            var dom = "";
+
+            $.each(data, function(key, value) {
+                var dateTime = value["match"]["dateTime"].split(" ");
+
+                dom += "<div class='box'><div class='row middle'>";
+                dom += "<div class='col-xs-2 matchNo'><div class='row'>";
+                dom += "<div class='col-xs-12'>" + dateTime[0] + "</div>";
+                dom += "<div class='col-xs-12'>" + dateTime[1] + "</div>";
+                dom += "<div class='col-xs-12'>#" + value["match"]["matchNo"] + "</div></div></div>";
+                dom += "<div class='col-xs-10'><div class='row'><div class='col-xs-12 title'>";
+                dom += "<span>" + teamData[value["match"]["redTeam"]] + " VS " + teamData[value["match"]["blueTeam"]] + "</span></div>";
+                
+                $.each(value["gameMatch"], function(key, value) {
+                    console.log(value);
+                    if( !(value["gameNo"] == "BR_1" || value["gameNo"] == "BB_1") ) {
+                        dom += "<div class='col-xs-12 game'><div class='row middle'><div class='col-xs-5'>";
+                        dom += "<i class='sc2 sc2-" + race[value["redRace"]] + "'></i>" + value["redTeam"] +"</div>";
+                        dom += "<div class='col-xs-2 verus'><div class='row'>";
+                        dom += "<div class='col-xs-12'>[" + value["gameNo"] + "]</div>";
+                        dom += "<div class='col-xs-12'>" + value["map"] + "</div></div></div>";
+                        dom += "<div class='col-xs-5'><i class='sc2 sc2-" + race[value["blueRace"]] + "'></i>" + value["blueTeam"] +"</div></div></div>";
+                    }
+                });
+
+                dom += "</div></div></div></div>";
+            });
+            
+            $("#upcoming").html(dom);
+
+            $("#loading").hide();
+        }, "json");
+    </script>
+
+</body>
+
+</html>

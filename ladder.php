@@ -1,16 +1,16 @@
 <?php
     function removeEmpty($array) {
         $trimmed_array = array_map('trim', $array);
-	
-		foreach($trimmed_array as $key => $arr) { 
-			if($arr === '') { 
-				unset($trimmed_array[$key]); 
-			} 
-		}
 
-		$trimmed_array = array_values($trimmed_array);
-		return $trimmed_array;
-	}
+        foreach($trimmed_array as $key => $arr) {
+            if($arr === '') {
+                unset($trimmed_array[$key]);
+            }
+        }
+
+        $trimmed_array = array_values($trimmed_array);
+        return $trimmed_array;
+    }
 
     function obj_to_array($data, $type) {
         $array = array();
@@ -60,41 +60,41 @@
     //取得選手種族
     $player_race_raw = $xpath -> query("//table/tr/td/img[@class='race']/@src");
     $player_race = obj_to_array($player_race_raw, "race");
-    
+
     $i = 0;
-	$result = array();
-	while($i < (count($player_info)/8) ) {
+    $result = array();
+    while($i < (count($player_info)/8) ) {
         $name = $player_name[$i];
         $tier = $player_tier[$i];
         $currLeague = $player_league[$i];
         $currRace = $player_race[$i];
 
-		$rank = $player_info[$i * 8 + 0];		
-		$mmr = $player_info[$i * 8 + 1];
-		$points = $player_info[$i * 8 + 2];
-		$wins = $player_info[$i * 8 + 3];
-		$losses = $player_info[$i * 8 + 4];
-		$played = $player_info[$i * 8 + 5];
-		$win_rate = $player_info[$i * 8 + 6];
+        $rank = $player_info[$i * 8 + 0];
+        $mmr = $player_info[$i * 8 + 1];
+        $points = $player_info[$i * 8 + 2];
+        $wins = $player_info[$i * 8 + 3];
+        $losses = $player_info[$i * 8 + 4];
+        $played = $player_info[$i * 8 + 5];
+        $win_rate = $player_info[$i * 8 + 6];
         $age = $player_info[$i * 8 + 7];
-        
 
-		$arr = array(	'rank' => $rank,
-                        'name' => $name,
-						'league' => $currLeague,
-						'tier' => $tier,
-						'mmr' => $mmr,
-						'points' => $points,
-						'wins' => $wins,
-						'losses' => $losses,
-						'played' => $played,
-						'win_rate' => $win_rate,
-                        'age' => $age,
-                        'race' => $currRace);
-		
-		$result[$i] = $arr;
-		$i++;
+
+        $arr = array('rank' => $rank,
+                     'name' => $name,
+                     'league' => $currLeague,
+                     'tier' => $tier,
+                     'mmr' => $mmr,
+                     'points' => $points,
+                     'wins' => $wins,
+                     'losses' => $losses,
+                     'played' => $played,
+                     'win_rate' => $win_rate,
+                     'age' => $age,
+                     'race' => $currRace);
+
+        $result[$i] = $arr;
+        $i++;
     }
-    
-	echo json_encode($result, JSON_UNESCAPED_UNICODE);
+
+    echo json_encode($result, JSON_UNESCAPED_UNICODE);
 ?>

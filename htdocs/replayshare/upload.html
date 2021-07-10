@@ -1,0 +1,245 @@
+<!DOCTYPE HTML>
+<!--
+	Urban by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+
+<head>
+    <title>Replay分享</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="shortcut icon" href="../images/favicon.ico" />
+    <link rel="bookmark" href="../images/favicon.ico" />
+
+    <link rel="stylesheet" href="../assets/css/main.css" />
+    <script type="text/javascript" language="javascript" src="../assets/js/css-management.js"></script>
+    <link rel="stylesheet" href="../assets/css/loader.css" />
+
+
+    <link rel="manifest" href="../assets/json/manifest.json" />
+    <script type="text/javascript" language="javascript" src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script type="text/javascript" language="javascript" src="../assets/js/notify.js" charset="UTF-8"></script>
+</head>
+
+<body class="subpage">
+    <div id="fakeLoader"></div>
+
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">
+            <a href="/">SGlory</a>
+        </div>
+        <a href="#menu">選單</a>
+    </header>
+
+    <!-- Nav -->
+    <nav id="menu">
+        <ul class="links">
+            <div id="menu_content"></div>
+        </ul>
+    </nav>
+
+    <!-- Main -->
+    <div id="main">
+
+        <!-- Section -->
+        <section class="wrapper style1">
+            <div class="inner">
+                <header class="align-center">
+                    <h1>Replay 上傳</h1>
+                    <p>Cras sagittis turpis sit amet est tempus, sit amet consectetur purus tincidunt.</p>
+                </header>
+
+                <form id="file-form" enctype="multipart/form-data" method="POST">
+                    <div class="row uniform">
+                        <div class="12u 12u$(xsmall)">
+                            <label>Replay名稱</label>
+                            <input type="text" name="name" id="name" value="" placeholder="Name" />
+                        </div>
+
+                        <div class="6u$ 12u$(xsmall)">
+                            <label>遊戲版本</label>
+                            <input type="text" name="version" id="version" value="" placeholder="Name" />
+                        </div>
+
+                        <div class="6u 12u$(xsmall)">
+                            <label>上傳者</label>
+                            <input type="text" name="sharer" id="sharer" value="" placeholder="Name" />
+                        </div>
+
+                        <div class="6u 12u$(xsmall)">
+                            <div class="select-wrapper">
+                                <select name="race" id="race">
+                                    <option value="">- 戰術種族 -</option>
+                                    <option value="PvP">PvP</option>
+                                    <option value="PvT">PvT</option>
+                                    <option value="PvZ">PvZ</option>
+                                    <option value="PvR">PvR</option>
+                                    <option value="TvP">TvP</option>
+                                    <option value="TvT">TvT</option>
+                                    <option value="TvZ">TvZ</option>
+                                    <option value="TvR">TvR</option>
+                                    <option value="ZvP">ZvP</option>
+                                    <option value="ZvT">ZvT</option>
+                                    <option value="ZvZ">ZvZ</option>
+                                    <option value="ZvR">ZvR</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="6u 12u$(xsmall)">
+                            <!-- empty -->
+                        </div>
+
+                        <div class="6u$">
+                            <label>上傳授權碼</label>
+                            <input type="text" name="authorizer" id="authorizer" value="" placeholder="請輸入上傳專用授權碼" />
+                        </div>
+
+                        <div class="6u 12u$(small)">
+                            <label>檔案隱私權</label>
+                            <input type="radio" id="privacy-public" name="privacy" value="0" checked>
+                            <label for="privacy-public">公開</label>
+                            <input type="radio" id="privacy-private" name="privacy" value="1">
+                            <label for="privacy-private">加密</label>
+                        </div>
+
+                    </div>
+
+                    <br/>
+
+                    <div id="memo" placeholder="Your text as placeholder"></div>
+
+                    <input type="file" id="file" name="file" class="dropify" />
+
+                    <button type="submit" id="upload-button">Upload</button>
+                </form>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="report">
+            <p>
+                <a href="mailto:admin@sglory.cf">
+                    <i class="fa fa-paper-plane-o" aria-hidden="true"></i>網站管理員：傑森哥（admin@sglory.cf）</a>
+            </p>
+        </div>
+        <div class="copyright">
+            <!-- <ul class="icons">
+					<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon fa-snapchat"><span class="label">Snapchat</span></a></li>
+				</ul> -->
+            <p>
+                <div id="copyright_content"></div>
+            </p>
+        </div>
+    </footer>
+
+    <div id="backTop" class="to-top-btn">
+        <i class="fa fa-2x fa-chevron-up" aria-hidden="true"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script type="text/javascript" language="javascript" src="../assets/js/jquery.min.js"></script>
+    <script type="text/javascript" language="javascript" src="../assets/js/jquery.scrolly.min.js"></script>
+    <script type="text/javascript" language="javascript" src="../assets/js/jquery.scrollex.min.js"></script>
+    <script type="text/javascript" language="javascript" src="../assets/js/loader.js"></script>
+    <script type="text/javascript" language="javascript" src="../assets/js/skel.min.js"></script>
+    <script type="text/javascript" language="javascript" src="../assets/js/util.js"></script>
+    <script type="text/javascript" language="javascript" src="../assets/js/main.js"></script>
+    <script type="text/javascript" language="javascript" src="../assets/js/js-management.js"></script>
+
+    <script>
+        $("#fakeLoader").fakeLoader({
+            zIndex: 999, // Default zIndex
+            timeToHide: 4500,
+            bgColor: "#34495e",
+            spinner: "spinner3"
+        });
+
+        window.onload = function () {
+            $('.dropify').dropify({
+                messages: {
+                    'default': '點擊或拖曳檔案',
+                    'replace': '點擊或拖曳檔案，以取代檔案',
+                    'remove': '移除',
+                    'error': '我們遇到一個上升氣流，然後就爆炸惹！'
+                },
+                error: {
+                    'fileSize': 'The file size is too big ({{ value }} max).',
+                    'minWidth': 'The image width is too small ({{ value }}}px min).',
+                    'maxWidth': 'The image width is too big ({{ value }}}px max).',
+                    'minHeight': 'The image height is too small ({{ value }}}px min).',
+                    'maxHeight': 'The image height is too big ({{ value }}px max).',
+                    'imageFormat': 'The image format is not allowed ({{ value }} only).'
+                }
+            });
+
+            $('#memo').trumbowyg({
+                btns: [
+                    ['viewHTML'],
+                    ['undo', 'redo'], // Only supported in Blink browsers
+                    ['formatting'],
+                    ['strong', 'em', 'del'],
+                    ['superscript', 'subscript'],
+                    ['link'],
+                    ['insertImage'],
+                    ['justifyLeft', 'justifyCenter', 'justifyRight', 'justifyFull'],
+                    ['unorderedList', 'orderedList'],
+                    ['horizontalRule'],
+                    ['removeformat']
+                ]
+            });
+        }
+
+    </script>
+
+    <script>
+        $("#file-form").submit(function (e) {
+            var data, xhr;
+
+            data = new FormData();
+            data.append('file', $('#file')[0].files[0]);
+            data.append('name', $('#name').val());
+            data.append('version', $('#version').val());
+            data.append('race', $('#race').val());
+            data.append('sharer', $('#sharer').val());
+            data.append('privacy', $("input[name='privacy']:checked").val());
+            data.append('authorizer', $('#authorizer').val());
+            data.append('memo', $('#memo').trumbowyg('html'));
+
+            xhr = new XMLHttpRequest();
+
+            xhr.open('POST', '//sglory.cf/php/replayshare/upload.php', true);
+            xhr.onreadystatechange = function (response) {
+                if (xhr.readyState == 4) {
+                    if (xhr.status == 200) {
+                        var response = xhr.responseText;
+
+                        if(response == "success") {
+                            alert("RP上傳完成");
+                            document.location.href = "list.html";
+                        }
+                    }
+                    else {
+                        alert ("伺服器處理錯誤");
+                    }
+                } 
+            };
+            xhr.send(data);
+
+            e.preventDefault();
+        });
+    </script>
+
+</body>
+
+</html>

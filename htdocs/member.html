@@ -1,0 +1,344 @@
+<!DOCTYPE HTML>
+<!--
+	Urban by TEMPLATED
+	templated.co @templatedco
+	Released for free under the Creative Commons Attribution 3.0 license (templated.co/license)
+-->
+<html>
+
+<head>
+    <title>Supreme Glory Clan</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <link rel="shortcut icon" href="images/favicon.ico" />
+    <link rel="bookmark" href="images/favicon.ico" />
+
+    <link rel="stylesheet" href="assets/css/main.css" />
+    <script type="text/javascript" language="javascript" src="assets/js/css-management.js"></script>
+
+
+    <link rel="manifest" href="assets/json/manifest.json" />
+    <script type="text/javascript" language="javascript" src="https://cdn.onesignal.com/sdks/OneSignalSDK.js" async=""></script>
+    <script type="text/javascript" language="javascript" src="assets/js/notify.js" charset="UTF-8"></script>
+</head>
+
+<body class="subpage">
+
+    <!-- Header -->
+    <header id="header">
+        <div class="logo">
+            <a href="/">SGlory</a>
+        </div>
+        <a href="#menu">選單</a>
+    </header>
+
+    <!-- Nav -->
+    <nav id="menu">
+        <ul class="links">
+            <div id="menu_content"></div>
+        </ul>
+    </nav>
+
+    <!-- Main -->
+    <div id="main">
+        <style>
+            @import url('https://fonts.googleapis.com/css?family=Anton');
+            .wrapper {
+                min-height: 90vh;
+            }
+            .member_container:hover {
+                background-color: rgba(192, 189, 189, 0.986);
+                color: #FFF;
+                -webkit-transition-duration: .3s;
+                transition-duration: .3s;
+                -webkit-transition-property: color, background-color;
+                transition-property: color, background-color;
+            }
+
+            .member_name {
+                width: 100%;
+                height: auto;
+                text-align: center;
+                color: #2D2D2D;
+                font-size: 28px;
+                font-weight: bold;
+                border-bottom: 5px solid #AAA;
+            }
+
+            .league {
+                color: #FFF;
+            }
+            
+            .sc2 {
+                font-size: 60px;
+                font-style: normal;
+                font-weight: bold;
+            }
+
+            .sc2-league {
+                top: 7px;
+                font-size: 30px;
+                font-style: normal;
+                font-weight: bold;
+            }
+
+            .ladder_word {
+                color: #FFF;
+                font-style: oblique;
+            }
+
+            .member_ladder {
+                background: #666;
+                font-size: 32px;
+            }
+
+            .mmr {
+                color: yellow;
+                font-weight: bold;
+            }
+
+            .record {
+                font-size: 40px;
+                margin-top: 10px;
+                font-family: 'Anton', sans-serif;
+            }
+
+            .member_buttom {
+                margin-top: 10px;
+            }
+
+            #filter {
+                border-radius: 5px;
+                background-color: #f2f2f2;
+                padding: 40px;
+                margin-bottom: 10px;
+            }
+
+            @media (max-width: 1280px) {
+                .member_ladder {
+                    font-size: 24px;
+                }
+                .record {
+                    font-size: 30px;
+                }
+            }
+        </style>
+
+        <!-- Section -->
+        <section class="wrapper style1">
+            <div class="inner">
+                <header class="align-center">
+                    <h1>
+                        <i class="fa fa-address-card-o" aria-hidden="true"></i>Member | 團隊隊員</h1>
+                    <p>以下是 SGlory 戰隊於天梯上的隊員列表</p>
+                </header>
+                <div id="filter">
+                    <div class="row">
+                        <div class="col-xs-12 col-sm-3">
+                            <div class="select-wrapper">
+                                <select id="filter_league">
+                                    <option value="">請選擇選手階級</option>
+                                    <option value="grandmaster">宗師（Grandmaster）</option>
+                                    <option value="master">大師（Master）</option>
+                                    <option value="diamond">鑽石（Diamond）</option>
+                                    <option value="platinum">白金（Platinum）</option>
+                                    <option value="gold">黃金（Gold）</option>
+                                    <option value="silver">白銀（Silver）</option>
+                                    <option value="bronze">青銅（Bronze）</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-3">
+                            <div class="select-wrapper">
+                                <select id="filter_race">
+                                    <option value="">請選擇選手種族</option>
+                                    <option value="protoss">神族（Protoss）</option>
+                                    <option value="terran">人族（Terran）</option>
+                                    <option value="zerg">蟲族（Zerg）</option>
+                                    <option value="random">隨機（Random）</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-xs-12 col-sm-3">
+                            <input type="text" id="filter_name" placeholder="請輸入選手名稱" />
+                        </div>
+                        <div class="col-xs-6 col-sm-1">
+                            <a href='#' class='button' id="filter_submit">篩選</a>
+                        </div>
+                        <div class="col-xs-6 col-sm-1">
+                            <a href='#' class='button' id="filter_reset">重設</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="row" id="member_panel"></div>
+                <div id="loading">
+                    <div class="spinner">
+                        <div class="rect1"></div>
+                        <div class="rect2"></div>
+                        <div class="rect3"></div>
+                        <div class="rect4"></div>
+                        <div class="rect5"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Footer -->
+    <footer id="footer">
+        <div class="report">
+            <p>
+                <a href="mailto:admin@sglory.cf">
+                    <i class="fa fa-paper-plane-o" aria-hidden="true"></i>網站管理員：傑森哥（admin@sglory.cf）</a>
+            </p>
+        </div>
+        <div class="copyright">
+            <!-- <ul class="icons">
+					<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+					<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+					<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+					<li><a href="#" class="icon fa-snapchat"><span class="label">Snapchat</span></a></li>
+				</ul> -->
+            <p>
+                <div id="copyright_content"></div>
+            </p>
+        </div>
+    </footer>
+
+    <div id="backTop" class="to-top-btn">
+        <i class="fa fa-2x fa-chevron-up" aria-hidden="true"></i>
+    </div>
+
+    <!-- Scripts -->
+    <script type="text/javascript" language="javascript" src="assets/js/jquery.min.js"></script>
+    <script type="text/javascript" language="javascript" src="assets/js/jquery.scrolly.min.js"></script>
+    <script type="text/javascript" language="javascript" src="assets/js/jquery.scrollex.min.js"></script>
+    <script type="text/javascript" language="javascript" src="assets/js/skel.min.js"></script>
+    <script type="text/javascript" language="javascript" src="assets/js/util.js"></script>
+    <script type="text/javascript" language="javascript" src="assets/js/main.js"></script>
+    <script type="text/javascript" language="javascript" src="assets/js/js-management.js"></script>
+
+    <script>
+        var member_panel_append = "";
+        var league_zhtw = {
+            "grandmaster": "宗師",
+            "master": "大師",
+            "diamond": "鑽石",
+            "platinum": "白金",
+            "gold": "黃金",
+            "silver": "白銀",
+            "bronze": "青銅"
+        }
+
+        function generatePlayerPanel(profile) {
+            var object = profile;
+
+            member_panel_append += "<div class='col-md-4 col-sm-6 col-xs-12' name='player_group'><div class='box member_container'>";
+            member_panel_append += "<div class='member_name'><span>" + object["name"] + "</span></div>";
+            member_panel_append += "<div class='row center-xs middle-xs'><div class='col-xs-12'><i class='sc2 sc2-" + object["race"] + "'></i></div></div>";
+            member_panel_append += "<div class='row center-xs middle-xs member_ladder'>";
+
+            if(object["league"] == "grandmaster")
+                member_panel_append += "<div class='col-xs-6 league'><i class='sc2 sc2-league sc2-" + object["league"] + "'></i>" + league_zhtw[object["league"]]  + "</div>";
+            else
+                member_panel_append += "<div class='col-xs-6 league'><i class='sc2 sc2-league sc2-" + object["league"] + "'></i>" +  league_zhtw[object["league"]] + object["tier"] + "</div>";
+            member_panel_append += "<div class='col-xs-6'><div class='mmr'><span class='mmr_value'>" + object["mmr"] + "</span></div></div></div>";
+            member_panel_append += "<div class='row center-xs record'><div class='col-xs-7'>";
+            //回填玩家勝負關係
+            member_panel_append += "<div class='win_lose'><span class='win'>" + object["wins"] + "-" + object["losses"] + "</span></div></div>";
+            //回填玩家勝率
+            member_panel_append += "<div class='col-xs-5'><span class='mmr_value'>" + object["win_rate"] + "</span></div></div>";
+            member_panel_append += "<div class='col align-center member_buttom'><a href='#' class='button disabled'>個人資料</a></div></div></div>";
+        }
+            
+        function fetchMemberData() {
+            //取得戰隊隊員天梯成績與資料
+            $.post("//sglory.cf/php/sglory_member_ladder.php", function (data) {
+                if(data.length === 0) {
+                    fetchMemberData();
+                }
+                else {
+                    $.each(data, function (index, value) {
+                        generatePlayerPanel(value);
+                    });
+
+                    document.getElementById("member_panel").innerHTML = member_panel_append;
+
+                    $("#loading").hide();
+                }
+            }, "json");
+        }
+
+        function filter_reset() {
+            $("div[name='player_group']").each(function () { 
+                $(this).each(function () {
+                    $(this).show();
+                });
+            });
+        }
+
+        function condition_reset() {
+            $("input[type='text']").val("");
+            $("select").val("");
+        }
+
+        function conditionCheck(source, checkCondition, currCondition) {
+            if(currCondition != "") {
+                if(source == checkCondition)
+                    return true;
+                else 
+                    return false;
+            }
+            else {
+                return true;
+            }
+        }
+
+        $(document).ready(function () {
+            setTimeout(fetchMemberData, 1500);
+
+            $("#filter_submit").click(function () {
+                var filter_name = $("#filter_name").val();
+                var filter_league = $("#filter_league").val();
+                var filter_race = $("#filter_race").val();
+
+                var condition = {
+                                    name: filter_name,
+                                    league: filter_league,
+                                    race: filter_race
+                                };
+                
+                filter_reset();
+
+                $("div[name='player_group']").each(function () {
+                    $(this).each(function () {
+                        const nodelist = Array.prototype.slice.call(this.querySelectorAll('*'));
+                        
+                        var name = nodelist[1]["innerText"];
+                        var race = nodelist[5]["classList"][1];
+                        var league = nodelist[8]["classList"][2];
+                        var mmr = nodelist[10]["innerText"];
+                        
+                        var race_result = conditionCheck(race, "sc2-" + condition["race"], condition["race"]);
+                        var league_result = conditionCheck(league, "sc2-" + condition["league"], condition["league"]);
+                        var name_result = conditionCheck(name, condition["name"], condition["name"]);
+
+                        if(race_result && league_result && name_result)
+                            $(this).show();
+                        else
+                            $(this).hide();
+                    });
+                });
+            });
+
+            $("#filter_reset").click(function () {  
+                filter_reset();
+                condition_reset()
+            });
+        });
+    </script>
+
+</body>
+
+</html>

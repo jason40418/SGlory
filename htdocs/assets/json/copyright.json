@@ -1,0 +1,30 @@
+{
+    "version": "1.0.0",
+    "date": "2018-01-26",
+    "editor": "傑森哥",
+    "domain": "sglory.cf",
+    "content" :
+    [
+        {
+            "header": "false",
+            "ID": "",
+            "name": "&copy; 2018 Supreme Glory Clan. All rights reserved.",
+            "link": "false",
+            "link_src": ""
+        },
+        {
+            "header": "true",
+            "ID": "Editor",
+            "name": "傑森哥",
+            "link": "false",
+            "link_src": ""
+        },
+        {
+            "header": "false",
+            "ID": "Template",
+            "name": "TEMPLATED",
+            "link": "true",
+            "link_src": "https://templated.co"
+        }
+    ]
+}

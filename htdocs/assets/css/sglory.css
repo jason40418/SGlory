@@ -1,0 +1,148 @@
+
+
+.to-top-btn {
+  opacity: 0;
+  position: fixed;
+  left: 70px;
+  bottom: 15px;
+  background: rgba(0, 0, 0, 0.8);
+  width: 50px;
+  height: 50px;
+  border-radius: 7px;
+  cursor: pointer;
+  padding: 10px;
+  transition: all 1s ease;
+  z-index: 100;
+}
+
+.to-top-btn .fa {
+  color: white; 
+}
+
+/* 定義 starcraft2 Icon */
+.sc2 {
+	font-size: 200%;
+}
+
+
+/* 首頁實況區塊ICON */
+.stream-facebook {
+	color: #168eea;
+}
+
+.stream-facebook:hover {
+	color: #0078d7;
+}
+
+.stream-youtube {
+	color: #fd5c63;
+}
+
+.stream-youtube:hover {
+	color: #ff0000;
+}
+
+
+/* 自定義 actions 屬性 */
+ul.actions {
+	cursor: default;
+	list-style: none;
+	padding-left: 0em;
+	padding-top: 1em;
+}
+
+	ul.actions li {
+		display: inline-block;
+		padding: 0 1em 0 0;
+		vertical-align: middle;
+	}
+
+		ul.actions li:last-child {
+			padding-right: 0;
+		}
+
+	ul.actions.small li {
+		padding: 0 0.5em 0 0;
+	}
+
+	ul.actions.vertical li {
+		display: block;
+		padding: 1em 0 0 0;
+	}
+
+		ul.actions.vertical li:first-child {
+			padding-top: 0;
+		}
+
+		ul.actions.vertical li > * {
+			margin-bottom: 0;
+		}
+
+	ul.actions.vertical.small li {
+		padding: 0.5em 0 0 0;
+	}
+
+		ul.actions.vertical.small li:first-child {
+			padding-top: 0;
+		}
+
+	ul.actions.fit {
+		display: table;
+		margin-left: -1em;
+		padding: 0;
+		table-layout: fixed;
+		width: calc(100% + 1em);
+	}
+
+		ul.actions.fit li {
+			display: table-cell;
+			padding: 0 0 0 1em;
+		}
+
+			ul.actions.fit li > * {
+				margin-bottom: 0;
+			}
+
+		ul.actions.fit.small {
+			margin-left: -0.5em;
+			width: calc(100% + 0.5em);
+		}
+
+			ul.actions.fit.small li {
+				padding: 0 0 0 0.5em;
+			}
+
+@media screen and (max-width: 480px) {
+
+ul.actions {
+	margin: 0 0 2em 0;
+	padding-left: 0em;
+}
+
+	ul.actions li {
+		padding: 1em 0 0 0;
+		text-align: center;
+		width: 100%;
+	}
+
+		ul.actions li:first-child {
+			padding-top: 0;
+		}
+
+		ul.actions li > * {
+			width: 100%;
+			margin: 0 !important;
+		}
+
+			ul.actions li > *.icon:before {
+				margin-left: -2em;
+			}
+
+	ul.actions.small li {
+		padding: 0.5em 0 0 0;
+	}
+
+		ul.actions.small li:first-child {
+			padding-top: 0;
+		}
+}

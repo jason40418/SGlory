@@ -1,0 +1,135 @@
+@charset "UTF-8";
+@import url("../assets/css/font-awesome.min.css");
+@import url("//fonts.googleapis.com/css?family=Scope+One|Trocchi");
+@import url("//fonts.googleapis.com/earlyaccess/notosanstc.css");
+@import url('//fonts.googleapis.com/css?family=Roboto');
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: "Roboto", "Scope One", "Noto Sans TC", serif;
+	font-size: 16px;
+}
+
+.btext {
+	color: #f9f3f4;
+	position: absolute;
+	text-align: center;
+	width: 80%;
+}
+
+.right-panel {
+	border-radius: 25px;
+	background-color: rgba(255, 255, 255, 0.5);
+	position: absolute;
+	width: 20%;
+	height: 11vh;
+	margin-left: 77%;
+	margin-top: 15%;
+}
+
+.commentary {
+	padding-left: 10px;
+	color: #FFF;
+	font-size: 2.5em;
+}
+
+.reporter {
+	width: 100%;
+}
+
+.title {
+	border-bottom: 5px solid #FFF;
+}
+
+.race {
+	padding-top: 3px;
+}
+
+.sc2 {
+	font-size: 40px;
+}
+
+.verus {
+	font-size: 35px;
+	border-radius: 25px;
+	background: rgba(138, 126, 126, 0.6);
+	color: rgb(229, 252, 59);
+}
+
+.score {
+	font-size: 70px;
+	font-weight: bold;
+	color: rgb(229, 252, 59);
+}
+
+.red {
+	width: 35%;
+	height: 50px;
+	background-color: #EE7674;
+}
+
+.blue {
+	width: 35%;
+	height: 50px;
+	background-color: #7488ED;
+	margin-left: 45px;
+}
+
+.map {
+	font-size: 30px;
+}
+
+.name {
+	font-size: 40px;
+}
+
+.ban-map {
+	font-size: 25px;
+}
+
+h1 {
+	font-size: 50px;
+}
+
+h2 {
+	font-size: 30px;
+}
+
+.match-info {
+	height: 80%;
+	width: 80%;
+	padding: 0% 10%;
+	float: left;
+}
+
+.game {
+	border-bottom: 3px solid #939699;
+}
+
+.team {
+	background: rgba(255, 255, 255, 0.3);
+}
+
+.team_name {
+	font-size: 50px;
+}
+
+.btn {
+	color: #fff;
+	text-decoration: none;
+	border: #ccc 1px solid;
+	padding: 10px 15px;
+	border-radius: 8px;
+	line-height: 4em;
+}
+
+.btn:hover {
+	color: #b19295;
+	border: #fff 1px solid;
+}
+
+#particles-js {
+	background-image: url('image1.jpg');
+	min-height: 100vh;
+}
